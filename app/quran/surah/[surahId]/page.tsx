@@ -4,7 +4,7 @@ import { Scheherazade_New } from "next/font/google";
 
 const arabic = Scheherazade_New({
   subsets: ["arabic"],
-  weight: ["400"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const Surah = async ({ params }: { params: Promise<{ surahId: string }> }) => {
@@ -70,7 +70,7 @@ const Surah = async ({ params }: { params: Promise<{ surahId: string }> }) => {
               <li key={ayat.nomorAyat}>
                 <div className="bg-sky-950 p-4 border-b-2 border-white/40">
                   <p
-                    className={`text-right text-3xl leading-14 ${arabic.className}`}
+                    className={`text-right text-3xl font-medium leading-14 ${arabic.className}`}
                   >
                     {ayat.teksArab}{" "}
                     <span className="text-xl">({ayat.nomorAyat})</span>
