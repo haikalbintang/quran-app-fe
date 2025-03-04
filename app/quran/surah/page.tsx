@@ -31,7 +31,7 @@ const SurahPage = async () => {
         {surahs.data.map((surah: Surah) => (
           <li key={surah.nomor}>
             <Link href={`/quran/surah/${surah.nomor}`}>
-              <div className="bg-sky-600 py-2 px-2 rounded-xl flex">
+              <div className="bg-sky-400/35 py-2 px-2 rounded-xl flex">
                 <p className="text-white/50 px-5 flex justify-center items-center">
                   {surah.nomor}
                 </p>
