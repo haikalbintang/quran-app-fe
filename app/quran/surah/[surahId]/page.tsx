@@ -13,7 +13,7 @@ const Surah = async ({ params }: { params: Promise<{ surahId: string }> }) => {
     <div className="bg-sky-800 min-h-screen flex flex-col items-center">
       <header className="flex py-3 w-full">
         {/* Left */}
-        <div className="w-1/3 flex pl-5">
+        <div className="w-1/3 flex pl-5 items-center">
           <Link href="/quran/surah">
             <Image
               src={"/left-arrow-2.svg"}
@@ -27,7 +27,7 @@ const Surah = async ({ params }: { params: Promise<{ surahId: string }> }) => {
         <div className="w-1/3 flex">
           <div className="flex flex-col text-center">
             <h1 className="text-sm">
-              {params.surahId}. {surah.data.namaLatin}
+              {surahId}. {surah.data.namaLatin}
             </h1>
             <h1 className="text-xs">{surah.data.arti}</h1>
           </div>
