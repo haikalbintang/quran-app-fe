@@ -25,9 +25,18 @@ const initialState: {
   answer: null,
 };
 
+type Action =
+  | { type: "initial"; payload: questions[] }
+  | { type: "error"; payload: string }
+  | { type: "next" }
+  | { type: "start" }
+  | { type: "back" }
+  | { type: "newAnswer"; payload: string }
+  | { type: "playAgain" };
+
 function reducer(
   state: typeof initialState,
-  action: { type: string; payload?: any }
+  action: Action
 ): typeof initialState {
   switch (action.type) {
     case "initial":
@@ -66,7 +75,7 @@ const Surah = () => {
         dispatch({ type: "initial", payload: data.surahs });
         console.log(data.surahs);
       } catch (error) {
-        dispatch({ type: "error", payload: error });
+        dispatch({ type: "error", payload: "Error" });
         console.error(error);
       }
     }
