@@ -1,16 +1,30 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const Surah = async ({ params }: { params: { surahId: number } }) => {
-  const data = await fetch(`https://equran.id/api/v2/surat/${params.surahId}`);
-  const surah = await data.json();
-  console.log(surah);
+  const dataSurah = await fetch(
+    `https://equran.id/api/v2/surat/${params.surahId}`
+  );
+  const surah = await dataSurah.json();
+  // Fetching tafsir
+  const dataTafsir = await fetch(
+    `https://equran.id/api/v2/tafsir/${params.surahId}`
+  );
+  const tafsir = await dataTafsir.json();
 
   return (
     <div className="bg-sky-800 min-h-screen flex flex-col items-center">
       <header className="flex py-3 w-full">
         {/* Left */}
         <div className="w-1/3 flex pl-5">
-          <Image src={"/left-arrow-2.svg"} alt="Back" width={23} height={23} />
+          <Link href="/quran/surah">
+            <Image
+              src={"/left-arrow-2.svg"}
+              alt="Back"
+              width={23}
+              height={23}
+            />
+          </Link>
         </div>
         {/* Middle */}
         <div className="w-1/3 flex">
@@ -64,11 +78,23 @@ const Surah = async ({ params }: { params: { surahId: number } }) => {
                     </p>
                   </div>
                 </div>
+                {/* Tafsir */}
+                <details className="bg-sky-900 p-4 text-white/80 text-sm border-t border-white/40">
+                  <summary className="cursor-pointer text-white/90">
+                    Lihat Tafsir
+                  </summary>
+                  <p className="mt-2">
+                    {tafsir.data.tafsir[ayat.nomorAyat - 1]?.teks ||
+                      "Tafsir tidak tersedia."}
+                  </p>
+                </details>
               </li>
             )
           )}
         </ol>
       </main>
+
+      <div></div>
     </div>
   );
 };
