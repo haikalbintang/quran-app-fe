@@ -1,5 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Scheherazade_New } from "next/font/google";
+
+const arabic = Scheherazade_New({
+  subsets: ["arabic"],
+  weight: ["400"],
+});
 
 const Surah = async ({ params }: { params: Promise<{ surahId: string }> }) => {
   const surahId = (await params).surahId;
@@ -63,7 +69,9 @@ const Surah = async ({ params }: { params: Promise<{ surahId: string }> }) => {
             }) => (
               <li key={ayat.nomorAyat}>
                 <div className="bg-sky-950 p-4 border-b-2 border-white/40">
-                  <p className="text-right text-3xl">
+                  <p
+                    className={`text-right text-3xl leading-14 ${arabic.className}`}
+                  >
                     {ayat.teksArab}{" "}
                     <span className="text-xl">({ayat.nomorAyat})</span>
                   </p>
