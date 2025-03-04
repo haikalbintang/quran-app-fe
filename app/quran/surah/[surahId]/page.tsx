@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Surah = async ({ params }: { params: { surahId: string } }) => {
+const Surah = async ({ params }: { params: Promise<{ surahId: string }> }) => {
   const dataSurah = await fetch(
     `https://equran.id/api/v2/surat/${params.surahId}`
   );
