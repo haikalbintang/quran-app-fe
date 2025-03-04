@@ -15,7 +15,7 @@ const QuranPage = () => {
         className="my-4"
       />
       <Link href={"/quran/surah"}>
-        <div className="border-b-4 border-gray-800 rounded-xl my-14">
+        <div className="border-b-4 border-gray-800 hover:cursor-pointer rounded-xl my-14">
           <button className="text-white bg-gray-500 py-2 px-6 rounded-xl text-lg font-semibold hover:translate-y-2 hover:duration-200 hover:bg-gray-400">
             Read Quran
           </button>

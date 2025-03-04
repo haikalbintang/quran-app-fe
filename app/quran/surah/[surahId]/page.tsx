@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const Surah = async ({ params }: { params: { surahId: number } }) => {
   const data = await fetch(`https://equran.id/api/v2/surat/${params.surahId}`);
   const surah = await data.json();
@@ -5,17 +7,35 @@ const Surah = async ({ params }: { params: { surahId: number } }) => {
 
   return (
     <div className="bg-sky-800 min-h-screen flex flex-col items-center">
-      <header className="flex">
-        <div className="flex flex-col">
-          <h1>
-            {params.surahId}. {surah.data.namaLatin}
-          </h1>
-          <h1>{surah.data.arti}</h1>
+      <header className="flex py-3 w-full">
+        {/* Left */}
+        <div className="w-1/3 flex pl-5">
+          <Image src={"/left-arrow-2.svg"} alt="Back" width={23} height={23} />
         </div>
-        <div>^</div>
+        {/* Middle */}
+        <div className="w-1/3 flex">
+          <div className="flex flex-col text-center">
+            <h1 className="text-sm">
+              {params.surahId}. {surah.data.namaLatin}
+            </h1>
+            <h1 className="text-xs">{surah.data.arti}</h1>
+          </div>
+          <div className="flex justify-center items-center pl-2">
+            <Image
+              src="/chevron-down.svg"
+              alt="Chevron Down"
+              width={14}
+              height={14}
+            />
+          </div>
+        </div>
+        {/* Right */}
+        <div className="w-1/3 flex justify-end pr-5">
+          <Image src={"/info.svg"} alt="Deskripsi" width={23} height={23} />
+        </div>
       </header>
 
-      <div className="bg-sky-900 w-full py-3 px-2">
+      <div className="bg-sky-900 w-full py-3 px-4">
         <p className="text-xs">
           {surah.data.nomor}. {surah.data.namaLatin} ({surah.data.arti})
         </p>
